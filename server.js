@@ -26,7 +26,6 @@ const auth = require('./routes/auth');
 const users = require('./routes/user');
 const reviews = require('./routes/reviews');
 const booking = require('./routes/bookings');
-const viewRouter = require('./routes/viewsRoutes');
 const bookingController=require('./controllers/booking');
 
 const app = express();
@@ -98,20 +97,7 @@ app.use('/api/v1/users', users);
 app.use('/api/v1/reviews', reviews);
 app.use('/api/v1/booking', booking);
 
-// Handle 404 requests
-app.all('*', (req, res, next) => {
-    if (req.originalUrl.startsWith('/api')) {
-        res.status(404).json({
-            success: false,
-            msg: `Cannot find this ${req.originalUrl} on server`
-        })
-    }
-    res.status(404).render('error', {
-        title: `404 page`,
-        msg: `This page isn't available`
 
-    });
-});
 
 
 // errorHandler
