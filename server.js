@@ -31,9 +31,7 @@ const bookingController=require('./controllers/booking');
 
 const app = express();
 app.enable('trust proxy');
-// setting up view engine
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+
 //serving static folders
 app.use(express.static(path.join(__dirname, 'Public')))
 
@@ -94,7 +92,6 @@ app.use('/api', Limitter);
 app.use(compression());
 
 // Mount routers
-app.use('/', viewRouter);
 app.use('/api/v1/tours', tours);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
